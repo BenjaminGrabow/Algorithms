@@ -3,7 +3,16 @@
 import argparse
 
 def find_max_profit(prices):
-  pass
+  trackIndex = 0
+  trackMaxWin = prices[1] - prices[0]
+ 
+  for price in range(len(prices)):
+    trackIndex = price
+    while trackIndex < len(prices):
+      if trackMaxWin < prices[trackIndex] - prices[price] and trackIndex != price:
+        trackMaxWin = prices[trackIndex] - prices[price]
+      trackIndex += 1
+  return trackMaxWin
 
 
 if __name__ == '__main__':
