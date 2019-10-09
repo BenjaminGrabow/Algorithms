@@ -10,13 +10,10 @@ from functools import  lru_cache
 def eating_cookies(n, cache={}):
   if n in cache:
     return cache[n]
-  elif n <= 1:
+  elif n == 0:
     return 1
-  elif n == 2:
-    return 2
-  elif n == 3:
-    return 4
-  #check cache for value
+  elif n < 1:
+    return 0
   else:
     value = eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
     cache[n] = value
