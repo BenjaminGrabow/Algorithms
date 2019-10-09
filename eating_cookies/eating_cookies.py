@@ -13,6 +13,7 @@ def eating_cookies(n, cache=None):
     else:
         return eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
 
+#needs optimization
 
 if __name__ == "__main__":
   if len(sys.argv) > 1:
