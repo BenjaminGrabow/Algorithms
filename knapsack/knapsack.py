@@ -2,12 +2,39 @@
 
 import sys
 from collections import namedtuple
+from operator import itemgetter
 
 Item = namedtuple('Item', ['index', 'size', 'value'])
 
 def knapsack_solver(items, capacity):
-  print(items, capacity)
+  compare = []
   
+  for item in items:
+    add_value = dict()
+    add_value["result"] = item.value / item.size
+    add_value["index"] = item.index
+    add_value["size"] = item.size
+    add_value["value"] = item.value
+    compare.append(add_value)
+  
+  sorted_list = sorted(compare, key = lambda i: i["result"],reverse=True)
+  
+  trackCapacity = sorted_list[0]["size"]
+  
+  trackValue = sorted_list[0]["value"]
+
+  resultIndicies = [sorted_list[0]["index"]]
+
+  for index,item in enumerate(sorted_list):
+    if index != 0 and trackCapacity + item["size"] <= 100:
+      trackCapacity += item["size"]
+      trackValue += item["value"]
+      resultIndicies.append(item["index"])
+  print(trackValue, resultIndicies)
+  resultIndicies.sort()
+  return {"Value": trackValue, "Chosen": resultIndicies}
+
+
 
 if __name__ == '__main__':
   if len(sys.argv) > 1:
