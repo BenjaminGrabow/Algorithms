@@ -20,17 +20,17 @@ def knapsack_solver(items, capacity):
   sorted_list = sorted(compare, key = lambda i: i["result"],reverse=True)
   trackCapacity = sorted_list[0]["size"]
   trackValue = sorted_list[0]["value"]
-  resultIndicies = [sorted_list[0]["index"]]
+  trackIndicies = [sorted_list[0]["index"]]
 
   for index,item in enumerate(sorted_list):
     if index != 0 and trackCapacity + item["size"] <= capacity:
       trackCapacity += item["size"]
       trackValue += item["value"]
-      resultIndicies.append(item["index"])
+      trackIndicies.append(item["index"])
 
-  resultIndicies.sort()
+  trackIndicies.sort()
   
-  return {"Value": trackValue, "Chosen": resultIndicies}
+  return {"Value": trackValue, "Chosen": trackIndicies}
 
 
 
