@@ -3,7 +3,20 @@
 import math
 
 def recipe_batches(recipe, ingredients):
-  pass 
+  test = True
+  counter = 0
+    
+  while test:
+    test = False  
+    for key, value in ingredients.items():
+      if value - recipe[key] >= 0:
+        ingredients[key] = value - recipe[key]
+        test = True
+        if list(recipe.keys())[-1] == key:
+          counter += 1
+      else: break
+    
+  return counter
 
 
 if __name__ == '__main__':
